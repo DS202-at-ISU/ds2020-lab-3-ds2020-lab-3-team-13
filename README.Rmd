@@ -76,6 +76,27 @@ View(av)
 
 Based on these datasets calculate the average number of deaths an Avenger suffers. 
 
+```{r}
+library(tidyverse)
+
+avenger_deaths <- deaths %>%
+  mutate(Died = ifelse(Died == "YES", 1, 0))
+
+View(avenger_deaths)
+
+avenger_returns <- returns %>%
+  mutate(Returned = ifelse(Returned == "YES", 1, 0))
+
+avenger_summary <- avenger_deaths %>%
+  left_join(avenger_returns, by = c("URL", "Name.Alias", "Time")) %>%
+  group_by(Name.Alias) %>%
+  summarise(total_deaths = sum(Died, na.rm = TRUE))
+
+mean(avenger_summary$total_deaths)
+
+```
+
+
 ## Individually
 
 For each team member, copy this part of the report. 
