@@ -141,9 +141,6 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 > The Statement that I am fact-checking is:
 "There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife"
 
-#### Benjamin Herschel Statement
-> "But you can only tempt death so many times. There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife, **but only a 50 percent chance they recovered from a second or third death.**"
-
 ### Include the code
 
 ```{r}
@@ -160,6 +157,13 @@ mean(return_rate$Returned, na.rm = TRUE)
 
 
 ```
+### Include your answer
+
+Based on the above code, the fact check that I did on "There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife" is correct as the data produces a 0.666667, which is 2/3. 
+
+
+#### Benjamin Herschel Statement
+> "But you can only tempt death so many times. There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife, **but only a 50 percent chance they recovered from a second or third death.**"
 
 #### Benjamin Herschel's Code
 
@@ -169,9 +173,6 @@ mean(return_rate$Returned, na.rm = TRUE)
 
 ```
 
-### Include your answer
-
-Based on the above code, the fact check that I did on "There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife" is correct as the data produces a 0.666667, which is 2/3. 
 
 ## Individually
 

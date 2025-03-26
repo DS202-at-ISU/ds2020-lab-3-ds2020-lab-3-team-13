@@ -80,7 +80,7 @@ library(tidyverse)
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.4     
+    ## ✔ purrr     1.0.2     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
@@ -193,16 +193,8 @@ possible.
 > that a member of the Avengers returned from their first stint in the
 > afterlife”
 
-#### Benjamin Herschel Statement
-
-> “But you can only tempt death so many times. There’s a 2-in-3 chance
-> that a member of the Avengers returned from their first stint in the
-> afterlife, **but only a 50 percent chance they recovered from a second
-> or third death.**”
-
 ### Include the code
 
-<<<<<<< HEAD
 ``` r
 #filtering the data sets to only look at the first deaths and returns and turn each Death and Return numerically
 first_death <- deaths %>% filter(Time == "Death1") %>% mutate(Died = ifelse(Died == "YES", 1, 0))
@@ -217,15 +209,21 @@ mean(return_rate$Returned, na.rm = TRUE)
 ```
 
     ## [1] 0.6666667
-=======
-#### Benjamin Herschel’s Code
->>>>>>> 739e03eb2ad285a24035c5b4bc0bca085c5d8411
 
 ### Include your answer
 
 Based on the above code, the fact check that I did on “There’s a 2-in-3
 chance that a member of the Avengers returned from their first stint in
 the afterlife” is correct as the data produces a 0.666667, which is 2/3.
+
+#### Benjamin Herschel Statement
+
+> “But you can only tempt death so many times. There’s a 2-in-3 chance
+> that a member of the Avengers returned from their first stint in the
+> afterlife, **but only a 50 percent chance they recovered from a second
+> or third death.**”
+
+#### Benjamin Herschel’s Code
 
 ## Individually
 
