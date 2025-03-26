@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/orjN5TIA)
 
 <!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
 
@@ -72,10 +71,141 @@ between 1 and 5 (look into the function `parse_number`); Death is a
 categorical variables with values “yes”, “no” and ““. Call the resulting
 data set `deaths`.
 
+``` r
+library(tidyverse)
+```
+
+    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+    ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+    ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+    ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+    ## ✔ purrr     1.0.2     
+    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    ## ✖ dplyr::filter() masks stats::filter()
+    ## ✖ dplyr::lag()    masks stats::lag()
+    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+
+``` r
+deaths <- av %>% 
+  pivot_longer(
+    starts_with("Death"),
+    names_to = "Time",
+    values_to = "Died"
+  ) %>% 
+  select(
+    URL, Name.Alias, Time, Died
+  )
+
+View(deaths)
+maxdeaths <- deaths %>% 
+  mutate(
+    Time = parse_number(Time)
+  ) %>% 
+  group_by(URL, Died) %>% 
+  summarise(
+    total_death = max(Time)
+  ) %>% 
+  filter(Died != "")
+```
+
+    ## `summarise()` has grouped output by 'URL'. You can override using the `.groups`
+    ## argument.
+
 Similarly, deal with the returns of characters.
+
+``` r
+returns <- av %>% 
+  pivot_longer(
+    starts_with("Return"),
+    names_to = "Time",
+    values_to = "Returned"
+  ) %>% 
+  select(
+    URL, Name.Alias, Time, Returned
+  )
+
+View(returns)
+View(av)
+```
 
 Based on these datasets calculate the average number of deaths an
 Avenger suffers.
+
+``` r
+library(tidyverse)
+
+avenger_deaths <- deaths %>%
+  mutate(Died = ifelse(Died == "YES", 1, 0))
+
+View(avenger_deaths)
+
+avenger_returns <- returns %>%
+  mutate(Returned = ifelse(Returned == "YES", 1, 0))
+
+avenger_summary <- avenger_deaths %>%
+  left_join(avenger_returns, by = c("URL", "Name.Alias", "Time")) %>%
+  group_by(Name.Alias) %>%
+  summarise(total_deaths = sum(Died, na.rm = TRUE))
+
+mean(avenger_summary$total_deaths)
+```
+
+    ## [1] 0.5460123
+
+## Izzy Grabowski
+
+For each team member, copy this part of the report.
+
+Each team member picks one of the statements in the FiveThirtyEight
+[analysis](https://fivethirtyeight.com/features/avengers-death-comics-age-of-ultron/)
+and fact checks it based on the data. Use dplyr functionality whenever
+possible.
+
+### FiveThirtyEight Statement
+
+> Quote the statement you are planning to fact-check.
+
+### Include the code
+
+Make sure to include the code to derive the (numeric) fact for the
+statement
+
+### Include your answer
+
+Include at least one sentence discussing the result of your
+fact-checking endeavor.
+
+Upload your changes to the repository. Discuss and refine answers as a
+team.
+
+## Ethan Rollinger
+
+For each team member, copy this part of the report.
+
+Each team member picks one of the statements in the FiveThirtyEight
+[analysis](https://fivethirtyeight.com/features/avengers-death-comics-age-of-ultron/)
+and fact checks it based on the data. Use dplyr functionality whenever
+possible.
+
+### FiveThirtyEight Statement
+
+> The Statement that I am fact-checking is: “There’s a 2-in-3 chance
+> that a member of the Avengers returned from their first stint in the
+> afterlife”
+
+### Include the code
+
+Make sure to include the code to derive the (numeric) fact for the
+statement
+
+### Include your answer
+
+Include at least one sentence discussing the result of your
+fact-checking endeavor.
+
+Upload your changes to the repository. Discuss and refine answers as a
+team.
 
 ## Individually
 
