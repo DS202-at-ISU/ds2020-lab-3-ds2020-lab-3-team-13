@@ -80,7 +80,7 @@ library(tidyverse)
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.2     
+    ## ✔ purrr     1.0.4     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
@@ -96,7 +96,20 @@ deaths <- av %>%
   select(
     URL, Name.Alias, Time, Died
   )
+
+maxdeaths <- deaths %>% 
+  mutate(
+    Time = parse_number(Time)
+  ) %>% 
+  group_by(URL, Died) %>% 
+  summarise(
+    total_death = max(Time)
+  ) %>% 
+  filter(Died != "")
 ```
+
+    ## `summarise()` has grouped output by 'URL'. You can override using the `.groups`
+    ## argument.
 
 Similarly, deal with the returns of characters.
 
@@ -112,6 +125,7 @@ returns <- av %>%
   )
 
 View(returns)
+View(deaths)
 View(av)
 ```
 
@@ -119,8 +133,6 @@ Based on these datasets calculate the average number of deaths an
 Avenger suffers.
 
 ``` r
-library(tidyverse)
-
 avenger_deaths <- deaths %>%
   mutate(Died = ifelse(Died == "YES", 1, 0))
 
@@ -181,8 +193,16 @@ possible.
 > that a member of the Avengers returned from their first stint in the
 > afterlife”
 
+#### Benjamin Herschel Statement
+
+> “But you can only tempt death so many times. There’s a 2-in-3 chance
+> that a member of the Avengers returned from their first stint in the
+> afterlife, **but only a 50 percent chance they recovered from a second
+> or third death.**”
+
 ### Include the code
 
+<<<<<<< HEAD
 ``` r
 #filtering the data sets to only look at the first deaths and returns and turn each Death and Return numerically
 first_death <- deaths %>% filter(Time == "Death1") %>% mutate(Died = ifelse(Died == "YES", 1, 0))
@@ -197,6 +217,9 @@ mean(return_rate$Returned, na.rm = TRUE)
 ```
 
     ## [1] 0.6666667
+=======
+#### Benjamin Herschel’s Code
+>>>>>>> 739e03eb2ad285a24035c5b4bc0bca085c5d8411
 
 ### Include your answer
 
