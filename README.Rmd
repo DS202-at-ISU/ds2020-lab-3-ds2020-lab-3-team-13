@@ -48,6 +48,7 @@ deaths <- av %>%
     URL, Name.Alias, Time, Died
   )
 
+<<<<<<< HEAD
 print(deaths)
 maxdeaths <- deaths %>% 
   mutate(
@@ -59,6 +60,8 @@ maxdeaths <- deaths %>%
   ) %>% 
   filter(Died != "")
 
+=======
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 ```
 
 
@@ -112,9 +115,13 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 
 ### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> My statement: Out of 173 listed Avengers, my analysis found that 69 had died at least one time after they joined the team.
 
 ### Include the code
+
+```{r}
+
+```
 
 Make sure to include the code to derive the (numeric) fact for the statement
 
@@ -126,7 +133,7 @@ Upload your changes to the repository. Discuss and refine answers as a team.
 
 
 
-## Individually
+## Ethan Rollinger
 
 For each team member, copy this part of the report. 
 
@@ -134,14 +141,17 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 
 ### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> The Statement that I am fact-checking is:
+"There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife"
 
 #### Benjamin Herschel Statement
 > "But you can only tempt death so many times. There’s a 2-in-3 chance that a member of the Avengers returned from their first stint in the afterlife, **but only a 50 percent chance they recovered from a second or third death.**"
 
 ### Include the code
 
-Make sure to include the code to derive the (numeric) fact for the statement
+```{r}
+
+```
 
 ```{r}
 

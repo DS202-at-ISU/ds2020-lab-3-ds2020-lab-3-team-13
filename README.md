@@ -80,7 +80,11 @@ library(tidyverse)
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+<<<<<<< HEAD
     ## ✔ purrr     1.0.4     
+=======
+    ## ✔ purrr     1.0.2     
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
@@ -96,6 +100,7 @@ deaths <- av %>%
   select(
     URL, Name.Alias, Time, Died
   )
+<<<<<<< HEAD
 
 print(deaths)
 ```
@@ -130,6 +135,10 @@ maxdeaths <- deaths %>%
     ## `summarise()` has grouped output by 'URL'. You can override using the `.groups`
     ## argument.
 
+=======
+```
+
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 Similarly, deal with the returns of characters.
 
 ``` r
@@ -151,6 +160,11 @@ Based on these datasets calculate the average number of deaths an
 Avenger suffers.
 
 ``` r
+<<<<<<< HEAD
+=======
+library(tidyverse)
+
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 avenger_deaths <- deaths %>%
   mutate(Died = ifelse(Died == "YES", 1, 0))
 
@@ -180,7 +194,12 @@ possible.
 
 ### FiveThirtyEight Statement
 
+<<<<<<< HEAD
 > Quote the statement you are planning to fact-check.
+=======
+> My statement: Out of 173 listed Avengers, my analysis found that 69
+> had died at least one time after they joined the team.
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 
 ### Include the code
 
@@ -195,7 +214,11 @@ fact-checking endeavor.
 Upload your changes to the repository. Discuss and refine answers as a
 team.
 
+<<<<<<< HEAD
 ## Individually
+=======
+## Ethan Rollinger
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 
 For each team member, copy this part of the report.
 
@@ -206,6 +229,7 @@ possible.
 
 ### FiveThirtyEight Statement
 
+<<<<<<< HEAD
 > Quote the statement you are planning to fact-check.
 
 #### Benjamin Herschel Statement
@@ -220,6 +244,14 @@ possible.
 Make sure to include the code to derive the (numeric) fact for the
 statement
 
+=======
+> The Statement that I am fact-checking is: “There’s a 2-in-3 chance
+> that a member of the Avengers returned from their first stint in the
+> afterlife”
+
+### Include the code
+
+>>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 ### Include your answer
 
 Include at least one sentence discussing the result of your
