@@ -58,6 +58,22 @@ maxdeaths <- deaths %>%
 
 Similarly, deal with the returns of characters.
 
+```{r}
+returns <- av %>% 
+  pivot_longer(
+    starts_with("Return"),
+    names_to = "Time",
+    values_to = "Returned"
+  ) %>% 
+  select(
+    URL, Name.Alias, Time, Returned
+  )
+
+View(returns)
+View(av)
+```
+
+
 Based on these datasets calculate the average number of deaths an Avenger suffers. 
 
 ## Individually
