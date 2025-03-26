@@ -96,21 +96,7 @@ deaths <- av %>%
   select(
     URL, Name.Alias, Time, Died
   )
-
-View(deaths)
-maxdeaths <- deaths %>% 
-  mutate(
-    Time = parse_number(Time)
-  ) %>% 
-  group_by(URL, Died) %>% 
-  summarise(
-    total_death = max(Time)
-  ) %>% 
-  filter(Died != "")
 ```
-
-    ## `summarise()` has grouped output by 'URL'. You can override using the `.groups`
-    ## argument.
 
 Similarly, deal with the returns of characters.
 
@@ -164,7 +150,8 @@ possible.
 
 ### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> My statement: Out of 173 listed Avengers, my analysis found that 69
+> had died at least one time after they joined the team.
 
 ### Include the code
 
@@ -195,9 +182,6 @@ possible.
 > afterlife”
 
 ### Include the code
-
-Make sure to include the code to derive the (numeric) fact for the
-statement
 
 ### Include your answer
 
