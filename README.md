@@ -97,7 +97,25 @@ deaths <- av %>%
     URL, Name.Alias, Time, Died
   )
 
-View(deaths)
+print(deaths)
+```
+
+    ## # A tibble: 865 × 4
+    ##    URL                                                Name.Alias     Time  Died 
+    ##    <chr>                                              <chr>          <chr> <chr>
+    ##  1 http://marvel.wikia.com/Henry_Pym_(Earth-616)      "Henry Jonath… Deat… "YES"
+    ##  2 http://marvel.wikia.com/Henry_Pym_(Earth-616)      "Henry Jonath… Deat… ""   
+    ##  3 http://marvel.wikia.com/Henry_Pym_(Earth-616)      "Henry Jonath… Deat… ""   
+    ##  4 http://marvel.wikia.com/Henry_Pym_(Earth-616)      "Henry Jonath… Deat… ""   
+    ##  5 http://marvel.wikia.com/Henry_Pym_(Earth-616)      "Henry Jonath… Deat… ""   
+    ##  6 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616) "Janet van Dy… Deat… "YES"
+    ##  7 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616) "Janet van Dy… Deat… ""   
+    ##  8 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616) "Janet van Dy… Deat… ""   
+    ##  9 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616) "Janet van Dy… Deat… ""   
+    ## 10 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616) "Janet van Dy… Deat… ""   
+    ## # ℹ 855 more rows
+
+``` r
 maxdeaths <- deaths %>% 
   mutate(
     Time = parse_number(Time)
@@ -131,6 +149,25 @@ View(av)
 
 Based on these datasets calculate the average number of deaths an
 Avenger suffers.
+
+``` r
+avenger_deaths <- deaths %>%
+  mutate(Died = ifelse(Died == "YES", 1, 0))
+
+View(avenger_deaths)
+
+avenger_returns <- returns %>%
+  mutate(Returned = ifelse(Returned == "YES", 1, 0))
+
+avenger_summary <- avenger_deaths %>%
+  left_join(avenger_returns, by = c("URL", "Name.Alias", "Time")) %>%
+  group_by(Name.Alias) %>%
+  summarise(total_deaths = sum(Died, na.rm = TRUE))
+
+mean(avenger_summary$total_deaths)
+```
+
+    ## [1] 0.5460123
 
 ## Individually
 
