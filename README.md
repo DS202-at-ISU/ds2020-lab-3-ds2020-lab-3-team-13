@@ -183,13 +183,26 @@ possible.
 
 ### Include the code
 
+``` r
+#filtering the data sets to only look at the first deaths and returns and turn each Death and Return numerically
+first_death <- deaths %>% filter(Time == "Death1") %>% mutate(Died = ifelse(Died == "YES", 1, 0))
+
+first_return <- returns %>% filter(Time == "Return1") %>% mutate(Returned = ifelse(Returned == "YES", 1, 0))
+
+#Combining the data sets together
+return_rate <- first_death %>% left_join(first_return, by = c("URL", "Name.Alias")) %>% filter(Died == 1)
+
+#Finding the mean of the return rate after the first death
+mean(return_rate$Returned, na.rm = TRUE)
+```
+
+    ## [1] 0.6666667
+
 ### Include your answer
 
-Include at least one sentence discussing the result of your
-fact-checking endeavor.
-
-Upload your changes to the repository. Discuss and refine answers as a
-team.
+Based on the above code, the fact check that I did on “There’s a 2-in-3
+chance that a member of the Avengers returned from their first stint in
+the afterlife” is correct as the data produces a 0.666667, which is 2/3.
 
 ## Individually
 
