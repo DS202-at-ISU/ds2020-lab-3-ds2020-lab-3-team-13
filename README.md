@@ -80,7 +80,7 @@ library(tidyverse)
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
     ## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-    ## ✔ purrr     1.0.2     
+    ## ✔ purrr     1.0.4     
     ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
@@ -167,6 +167,39 @@ possible.
 
 ### Include the code
 
+``` r
+# FACT CHECKING
+library(dplyr)
+library(tidyverse)
+
+
+avenger_deaths <- deaths %>%
+  mutate(Died = ifelse(Died == "YES", 1, 0))
+
+total_avengers <- avenger_deaths %>%
+  summarise(total = n_distinct(Name.Alias)) # organize by each avenger
+
+avengers_who_died <- avenger_deaths %>%
+  filter(Died == 1) %>%
+  summarise(Died_count = n_distinct(Name.Alias)) # counting number of avengers that died
+
+print(total_avengers)
+```
+
+    ## # A tibble: 1 × 1
+    ##   total
+    ##   <int>
+    ## 1   163
+
+``` r
+print(avengers_who_died)
+```
+
+    ## # A tibble: 1 × 1
+    ##   Died_count
+    ##        <int>
+    ## 1         64
+
 Make sure to include the code to derive the (numeric) fact for the
 statement
 
@@ -174,6 +207,11 @@ statement
 
 Include at least one sentence discussing the result of your
 fact-checking endeavor.
+
+My Answer: I found that there was a total of 163 avengers, and after
+checking the data there are 10 missing entries for the Names.ALias
+column. I also found that 64 avengers died at least once, rather than
+69. So, the fact is not true.
 
 Upload your changes to the repository. Discuss and refine answers as a
 team.

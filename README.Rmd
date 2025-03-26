@@ -170,6 +170,7 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 ### Include the code
 
 ```{r}
+
 #filtering the data sets to only look at the first deaths and returns and turn each Death and Return numerically
 first_death <- deaths %>% filter(Time == "Death1") %>% mutate(Died = ifelse(Died == "YES", 1, 0))
 
@@ -180,7 +181,6 @@ return_rate <- first_death %>% left_join(first_return, by = c("URL", "Name.Alias
 
 #Finding the mean of the return rate after the first death
 mean(return_rate$Returned, na.rm = TRUE)
-
 
 ```
 ### Include your answer
