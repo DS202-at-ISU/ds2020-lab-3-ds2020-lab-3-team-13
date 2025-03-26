@@ -48,8 +48,6 @@ deaths <- av %>%
     URL, Name.Alias, Time, Died
   )
 
-<<<<<<< HEAD
-print(deaths)
 maxdeaths <- deaths %>% 
   mutate(
     Time = parse_number(Time)
@@ -60,8 +58,6 @@ maxdeaths <- deaths %>%
   ) %>% 
   filter(Died != "")
 
-=======
->>>>>>> 250d204befc90dac62fd72390b7eb70f10f7b11f
 ```
 
 
@@ -80,6 +76,7 @@ returns <- av %>%
   )
 
 View(returns)
+View(deaths)
 View(av)
 
 ```
@@ -152,6 +149,8 @@ Each team member picks one of the statements in the FiveThirtyEight [analysis](h
 ```{r}
 
 ```
+
+#### Benjamin Herschel's Code
 
 ```{r}
 
