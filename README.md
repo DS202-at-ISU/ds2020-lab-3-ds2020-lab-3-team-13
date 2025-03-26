@@ -97,7 +97,6 @@ deaths <- av %>%
     URL, Name.Alias, Time, Died
   )
 
-View(deaths)
 maxdeaths <- deaths %>% 
   mutate(
     Time = parse_number(Time)
@@ -126,6 +125,7 @@ returns <- av %>%
   )
 
 View(returns)
+View(deaths)
 View(av)
 ```
 
@@ -133,8 +133,6 @@ Based on these datasets calculate the average number of deaths an
 Avenger suffers.
 
 ``` r
-library(tidyverse)
-
 avenger_deaths <- deaths %>%
   mutate(Died = ifelse(Died == "YES", 1, 0))
 
@@ -164,7 +162,8 @@ possible.
 
 ### FiveThirtyEight Statement
 
-> Quote the statement you are planning to fact-check.
+> My statement: Out of 173 listed Avengers, my analysis found that 69
+> had died at least one time after they joined the team.
 
 ### Include the code
 
@@ -196,16 +195,35 @@ possible.
 
 ### Include the code
 
-Make sure to include the code to derive the (numeric) fact for the
-statement
+``` r
+#filtering the data sets to only look at the first deaths and returns and turn each Death and Return numerically
+first_death <- deaths %>% filter(Time == "Death1") %>% mutate(Died = ifelse(Died == "YES", 1, 0))
+
+first_return <- returns %>% filter(Time == "Return1") %>% mutate(Returned = ifelse(Returned == "YES", 1, 0))
+
+#Combining the data sets together
+return_rate <- first_death %>% left_join(first_return, by = c("URL", "Name.Alias")) %>% filter(Died == 1)
+
+#Finding the mean of the return rate after the first death
+mean(return_rate$Returned, na.rm = TRUE)
+```
+
+    ## [1] 0.6666667
 
 ### Include your answer
 
-Include at least one sentence discussing the result of your
-fact-checking endeavor.
+Based on the above code, the fact check that I did on “There’s a 2-in-3
+chance that a member of the Avengers returned from their first stint in
+the afterlife” is correct as the data produces a 0.666667, which is 2/3.
 
-Upload your changes to the repository. Discuss and refine answers as a
-team.
+#### Benjamin Herschel Statement
+
+> “But you can only tempt death so many times. There’s a 2-in-3 chance
+> that a member of the Avengers returned from their first stint in the
+> afterlife, **but only a 50 percent chance they recovered from a second
+> or third death.**”
+
+#### Benjamin Herschel’s Code
 
 ## Individually
 
