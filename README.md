@@ -277,15 +277,6 @@ the afterlife” is correct as the data produces a 0.666667, which is 2/3.
 
 #### Benjamin Herschel’s Code
 
-## Individually
-
-For each team member, copy this part of the report.
-
-Each team member picks one of the statements in the FiveThirtyEight
-[analysis](https://fivethirtyeight.com/features/avengers-death-comics-age-of-ultron/)
-and fact checks it based on the data. Use dplyr functionality whenever
-possible.
-
 ## Christopher Moseley
 
 ### FiveThirtyEight Statement
@@ -317,26 +308,3 @@ former member to die every seven months or so”, I found that it was
 accurate at 7.146 months on average. So it wasn’t exactly 7 months but
 it said or so, and I’d consider the .146 extra to consider the statement
 accurate.
-
-Include at least one sentence discussing the result of your
-fact-checking endeavor.
-
-Upload your changes to the repository. Discuss and refine answers as a
-team.
-
-### FiveThirtyEight Statement
-
-> Quote the statement you are planning to fact-check.
-
-### Include the code
-
-Make sure to include the code to derive the (numeric) fact for the
-statement
-
-### Include your answer
-
-Include at least one sentence discussing the result of your
-fact-checking endeavor.
-
-Upload your changes to the repository. Discuss and refine answers as a
-team.
