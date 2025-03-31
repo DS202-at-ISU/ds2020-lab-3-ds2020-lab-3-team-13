@@ -277,7 +277,6 @@ the afterlife” is correct as the data produces a 0.666667, which is 2/3.
 
 #### Benjamin Herschel’s Code
 
-<<<<<<< HEAD
 ``` r
 deaths <- av %>% 
   pivot_longer(
