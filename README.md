@@ -263,6 +263,54 @@ the afterlife” is correct as the data produces a 0.666667, which is 2/3.
 
 #### Benjamin Herschel’s Code
 
+``` r
+deaths <- av %>% 
+  pivot_longer(
+    starts_with("Death"),
+    names_to = "Time",
+    values_to = "Died"
+  ) %>% 
+  select(
+    URL, Name.Alias, Time, Died
+  ) %>%
+  mutate(Time = parse_number(Time),
+         Died_numeric = ifelse(Died == "YES", 1, 0))
+
+returns <- av %>% 
+  pivot_longer(
+    starts_with("Return"),
+    names_to = "Time",
+    values_to = "Returned"
+  ) %>% 
+  select(
+    URL, Name.Alias, Time, Returned
+  ) %>%
+  mutate(Time = parse_number(Time),
+         Returned_numeric = ifelse(Returned == "YES", 1, 0))
+
+second_third_deaths <- deaths %>%
+  filter(Time %in% c(2, 3))
+
+recovery_data <- second_third_deaths %>%
+  left_join(returns, by = c("URL", "Name.Alias", "Time"))
+
+recovery_rate <- recovery_data %>%
+  filter(Died_numeric == 1) %>%
+  summarise(return_percentage = mean(Returned_numeric, na.rm = TRUE) * 100)
+
+if(nrow(recovery_rate) > 0 && is.finite(recovery_rate$return_percentage)){
+  print(paste("Recovery percentage after second/third death:", round(recovery_rate$return_percentage, 2), "%"))
+  if (abs(recovery_rate$return_percentage - 50) < 5) {
+    print("The 50% statement is correct.")
+  } else {
+    print("The 50% statement is incorrect.")
+  }
+} 
+```
+
+    ## [1] "Recovery percentage after second/third death: 50 %"
+    ## [1] "The 50% statement is correct."
+
 ## Individually
 
 For each team member, copy this part of the report.
