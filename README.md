@@ -75,6 +75,20 @@ data set `deaths`.
 library(tidyverse)
 ```
 
+    ## Warning: package 'tidyverse' was built under R version 4.4.3
+
+    ## Warning: package 'ggplot2' was built under R version 4.4.3
+
+    ## Warning: package 'tidyr' was built under R version 4.4.3
+
+    ## Warning: package 'purrr' was built under R version 4.4.3
+
+    ## Warning: package 'dplyr' was built under R version 4.4.3
+
+    ## Warning: package 'forcats' was built under R version 4.4.3
+
+    ## Warning: package 'lubridate' was built under R version 4.4.3
+
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
     ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
@@ -271,6 +285,44 @@ Each team member picks one of the statements in the FiveThirtyEight
 [analysis](https://fivethirtyeight.com/features/avengers-death-comics-age-of-ultron/)
 and fact checks it based on the data. Use dplyr functionality whenever
 possible.
+
+## Christopher Moseley
+
+### FiveThirtyEight Statement
+
+> The Statement I’m fact checking is: “Given the Avengers’ 53 years in
+> operation and overall mortality rate, fans of the comics can expect
+> one current or former member to die every seven months or so.”
+
+### Include the code
+
+Make sure to include the code to derive the (numeric) fact for the
+statement
+
+``` r
+#View(av)
+
+DeathColumns <- c("Death1", "Death2", "Death3", "Death4", "Death5")
+
+yesCount <- sum(av[, DeathColumns] == "YES")
+
+avTimeBetweenDeaths <- (53 / yesCount) * 12
+```
+
+### Include your answer
+
+For the statement I did, “Given the Avengers’ 53 years in operation and
+overall mortality rate, fans of the comics can expect one current or
+former member to die every seven months or so”, I found that it was
+accurate at 7.146 months on average. So it wasn’t exactly 7 months but
+it said or so, and I’d consider the .146 extra to consider the statement
+accurate.
+
+Include at least one sentence discussing the result of your
+fact-checking endeavor.
+
+Upload your changes to the repository. Discuss and refine answers as a
+team.
 
 ### FiveThirtyEight Statement
 
